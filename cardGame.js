@@ -27,3 +27,43 @@ kings = 13
 6. console log both card objects, and a message declaring which one has the higher value
 
 */
+
+// #1, #3 Deck class constructor
+
+class Deck {
+    constructor() {
+        this.deck = []
+    }
+    //#2 card method
+    generateDeck(suits = ['hearts','diamonds','clubs','spades'], max = 13){
+        suits.forEach(s => {
+            for(let i = 1; i <= max; i++){
+                this.deck.push({suit: s , value: i})
+            }
+        })
+    }
+    // #4 random card
+    generateRandom(){
+        const {deck} = this
+        return deck[Math.floor(Math.random() * deck.length)]
+    }
+}
+const deckOne = new Deck()
+const deckTwo = new Deck()
+deckOne.generateDeck()
+deckTwo.generateDeck()
+//#5 play function
+
+function letsPlay(){
+    const pOneDraw = deckOne.generateRandom()
+    const pTwoDraw = deckTwo.generateRandom()
+
+    //#6
+    console.log(`Player One: ${pOneDraw.value} of ${pOneDraw.suit} \nPlayer Two: ${pTwoDraw.value} of ${pTwoDraw.suit}`)
+    if(pOneDraw.value === pTwoDraw.value){
+        console.log(`TIE`)
+    }else if(pOneDraw.value > pTwoDraw.value){
+        console.log(`Player One WINS!`)
+    }else console.log(`Player Two WINS!`)
+}
+letsPlay()
